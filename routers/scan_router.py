@@ -48,7 +48,8 @@ def get_history(
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_db),
-    current_user: db_models.User = Depends(get_current_user),  # must be logged in
+    #current_user: db_models.User = Depends(get_current_user),  # must be logged in
+    current_user: Optional[db_models.User] = Depends(get_optional_user),
 ):
     query = db.query(db_models.Scan)
  
